@@ -1,0 +1,11 @@
+3.1
+com.google.refine.model.changes.ColumnRemovalChange
+oldColumnIndex=0
+oldColumn={"cellIndex":3,"originalName":"Last name","name":"Last name","type":"string","format":"","title":"","description":"","constraints":"{}"}
+oldCellCount=4
+0;{"v":" Grey"}
+1;{"v":" Johnson"}
+2;{"v":" Jenkins"}
+3;{"v":" Smith"}
+oldColumnGroupCount=0
+/ec/

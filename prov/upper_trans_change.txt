@@ -1,0 +1,26 @@
+3.1
+com.google.refine.model.changes.MassCellChange
+commonColumnName=Last name
+updateRowContextDependencies=true
+cellChangeCount=4
+row=0
+cell=3
+old={"v":" Grey"}
+new={"v":" GREY"}
+/ec/
+row=1
+cell=3
+old={"v":" Johnson"}
+new={"v":" JOHNSON"}
+/ec/
+row=2
+cell=3
+old={"v":" Jenkins"}
+new={"v":" JENKINS"}
+/ec/
+row=3
+cell=3
+old={"v":" Smith"}
+new={"v":" SMITH"}
+/ec/
+/ec/
