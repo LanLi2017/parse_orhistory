@@ -1,5 +1,5 @@
-Login email,Identifier,group,First name,Last name
-laura,2069,user, LAURA, GREY
-craig,4080,user, CRAIG, JOHNSON
-mary,9345,admin, MARY, JENKINS
-jamie,5078,admin, JAMIE, SMITH
+Login email,Identifier,First name,Last name
+laura,2069, LAURA, GREY
+craig,4080, CRAIG, JOHNSON
+mary,9345, MARY, JENKINS
+jamie,5078, JAMIE, SMITH
