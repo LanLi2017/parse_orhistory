@@ -1,0 +1,13 @@
+[
+    {
+        "op": "ColumnRemovalChange",
+        "oldColumnIndex": "2",
+        "oldColumn": "{\"cellIndex\":4,\"originalName\":\"group\",\"name\":\"group\",\"type\":\"\",\"format\":\"default\",\"title\":\"\",\"description\":\"\",\"constraints\":\"{}\"}",
+        "oldCellCount": "4",
+        "('0', 4)": "{\"v\":\"user\"}",
+        "('1', 4)": "{\"v\":\"user\"}",
+        "('2', 4)": "{\"v\":\"admin\"}",
+        "('3', 4)": "{\"v\":\"admin\"}",
+        "oldColumnGroupCount": "0"
+    }
+]

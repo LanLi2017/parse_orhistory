@@ -1,0 +1,26 @@
+import argparse
+
+
+def get_args():
+    ''' Get all the args'''
+    parser = argparse.ArgumentParser(description='Parser of OpenRefine Provenance Model')
+    parser.add_argument(
+        "--num_top",
+        type= int,
+        default= 4,
+        help='number of toppings'
+    )
+    parser.add_argument(
+        "--file_path",
+        type=str,
+        choices=['1591062762131.change', '1591063332588.change', '1591063264316.change', '1591063379500.change', '1591063129144.change', '1591317229023.change'],
+        default='1591062762131.change',
+        help='path of the input change'
+    )
+    parser.add_argument(
+        "--log",
+        type=str,
+        default='prov1.json',
+        help='path of the output provenance file'
+    )
+    return parser.parse_args()

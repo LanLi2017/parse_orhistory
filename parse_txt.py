@@ -17,6 +17,9 @@ new:,
 
 '''
 from pprint import pprint
+import Options
+import re
+import json
 
 
 def list_split_cond(items, sep_cond, maxsplit=-1):
@@ -49,6 +52,7 @@ def list_split_cond(items, sep_cond, maxsplit=-1):
 
 
 def Common_transform(topping:list,content:list):
+    ''' common transformation: topping: 4'''
     # content: list
     # operation name
     opname = topping[0].split('.')[-1]
@@ -68,27 +72,103 @@ def Common_transform(topping:list,content:list):
         row_idx = res['row']
         cell_idx = res['cell']
         idx = (row_idx, cell_idx)
-        res_dict = {idx: res}
+        res_dict = {str(idx): res}
         content_dict.update(res_dict)
     op.update(content_dict)
-    pprint(op)
-    # column name
-    # for equation in content[1:]:
-    #     print(equation)
-    #     # try:
-    #     res = dict(equation.split('='))
-    #     print(res)
-    #     # except:
-        #     pass
+    return op
+
+
+def col_addition(topping:list, content:list):
+    ''' column addition : topping 5'''
+    # column name / column index / [newCellIndex]/ newCellCount
+    opname = topping[0].split('.')[-1]
+    op = {'op': opname}
+    res = dict(item.split("=") for item in topping[1:])
+    op.update(res)
+    cell = op['newCellIndex']
+
+    # content
+    Content = list_split_cond(content, '/ec/'.__eq__)
+    # remove empty
+    TContent = [x for x in Content if x]
+
+    content_dict = dict()
+    for value in TContent:
+        for item in value:
+
+            # new_item = re.split(';|=', item)
+            if re.match('\d+;.*', item):
+                new_item = item.split(';', maxsplit=1)
+                row_idx = new_item[0]
+                cell_value = new_item[1]
+                cell_idx = cell
+                idx = (row_idx, cell_idx)
+                res_dict = {str(idx): cell_value}
+                content_dict.update(res_dict)
+
+            elif re.match('\w+=.*', item):
+                new_item = item.split('=', maxsplit=1)
+                key, value = new_item[0], new_item[1]
+                content_dict.update({key: value})
+    op.update(content_dict)
+    return op
+
+
+def col_remove(topping:list, content:list):
+    ''' rename column topping: 3'''
+    opname = topping[0].split('.')[-1]
+    op = {'op': opname}
+
+    # input data status ; view index -> physical idx || saved index/actual index
+    old_col = dict(item.split("=") for item in topping[1:])
+
+    # oldColumnIndex = old_col['oldColumnIndex']
+    oldColumn = json.loads(old_col['oldColumn'])
+    cellIdx = oldColumn['cellIndex']
+
+    op.update(old_col)
+
+    # content
+    Content = list_split_cond(content, '/ec/'.__eq__)
+    # remove empty
+    TContent = [x for x in Content if x]
+
+    content_dict = dict()
+    for value in TContent:
+        for item in value:
+            # new_item = re.split(';|=', item)
+            if re.match('\d+;.*', item):
+                new_item = item.split(';', maxsplit=1)
+                row_idx = new_item[0]
+                cell_value = new_item[1]
+                # cell_idx = oldColumnIndex
+                cell_idx = cellIdx
+                idx = (row_idx, cell_idx)
+                res_dict = {str(idx): cell_value}
+                content_dict.update(res_dict)
+
+            elif re.match('\w+=.*', item):
+                new_item = item.split('=', maxsplit=1)
+                key, value = new_item[0], new_item[1]
+                content_dict.update({key: value})
+    op.update(content_dict)
+    return op
 
 
 func_map ={
     'MassCellChange': Common_transform,
+    'ColumnAdditionChange': col_addition,
+    'ColumnRemovalChange': col_remove,
+
 }
 
 
 def main():
-    filepath = 'prov/-1_trans_change.txt'
+
+    args = Options.get_args()
+    #
+    filepath =f'research_data/TAPP_data/changes/{args.file_path}/change.txt'
+    # filepath = 'research_data/TAPP_data/changes/1591317229023.change/change.txt'
     with open(filepath, 'r')as f:
         # txt = f.read()
           data = f.readlines()
@@ -96,14 +176,21 @@ def main():
         # data = txt.split('\n/ec/\n')
     data = [x.strip() for x in data]
     # different text file has different number of topping
-    top_count = 4
+
+    top_count = args.num_top
+    # top_count = 3
     head, top, content = data[0], data[1:top_count+1], data[top_count+1:]
 
     # mapping to different function
     opname = top[0].split('.')[-1]
 
     # common transformation : upper/lower/...
-    func_map[opname](top, content)
+    prov_path = f'log/{args.log}'
+    # prov_path = 'log/prov6.json'
+    op = [func_map[opname](top, content)]
+    pprint(op)
+    with open(prov_path, "w") as outfile:
+        json.dump(op, outfile, indent=4)
 
 
 if __name__ == '__main__':

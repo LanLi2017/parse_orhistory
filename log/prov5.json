@@ -1,0 +1,32 @@
+[
+    {
+        "op": "MassCellChange",
+        "commonColumnName": "Last name",
+        "updateRowContextDependencies": "true",
+        "cellChangeCount": "4",
+        "('0', '3')": {
+            "row": "0",
+            "cell": "3",
+            "old": "{\"v\":\" Grey\"}",
+            "new": "{\"v\":\" GREY\"}"
+        },
+        "('1', '3')": {
+            "row": "1",
+            "cell": "3",
+            "old": "{\"v\":\" Johnson\"}",
+            "new": "{\"v\":\" JOHNSON\"}"
+        },
+        "('2', '3')": {
+            "row": "2",
+            "cell": "3",
+            "old": "{\"v\":\" Jenkins\"}",
+            "new": "{\"v\":\" JENKINS\"}"
+        },
+        "('3', '3')": {
+            "row": "3",
+            "cell": "3",
+            "old": "{\"v\":\" Smith\"}",
+            "new": "{\"v\":\" SMITH\"}"
+        }
+    }
+]
