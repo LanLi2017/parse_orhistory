@@ -177,12 +177,20 @@ def main():
     data = [x.strip() for x in data]
     # different text file has different number of topping
 
-    top_count = args.num_top
-    # top_count = 3
-    head, top, content = data[0], data[1:top_count+1], data[top_count+1:]
+    # top_count = args.num_top ; initialize
+    top_count = 3
 
     # mapping to different function
-    opname = top[0].split('.')[-1]
+    opname = data[1].split('.')[-1]
+
+    if opname=='MassCellChange':
+        top_count = 4
+    elif opname=='ColumnAdditionChange':
+        top_count = 5
+    elif opname=='ColumnRemovalChange':
+        top_count = 3
+
+    head, top, content = data[0], data[1:top_count + 1], data[top_count + 1:]
 
     # common transformation : upper/lower/...
     prov_path = f'log/{args.log}'

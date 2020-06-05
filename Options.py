@@ -4,12 +4,12 @@ import argparse
 def get_args():
     ''' Get all the args'''
     parser = argparse.ArgumentParser(description='Parser of OpenRefine Provenance Model')
-    parser.add_argument(
-        "--num_top",
-        type= int,
-        default= 4,
-        help='number of toppings'
-    )
+    # parser.add_argument(
+    #     "--num_top",
+    #     type= int,
+    #     default= 4,
+    #     help='number of toppings'
+    # )
     parser.add_argument(
         "--file_path",
         type=str,
