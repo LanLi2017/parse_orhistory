@@ -1,32 +1,30 @@
-[
-    {
-        "op": "MassCellChange",
-        "commonColumnName": "Login email",
-        "updateRowContextDependencies": "true",
-        "cellChangeCount": "4",
-        "('0', '0')": {
-            "row": "0",
-            "cell": "0",
-            "old": "{\"v\":\"laura@example.com\"}",
-            "new": "{\"v\":\"laura\"}"
-        },
-        "('1', '0')": {
-            "row": "1",
-            "cell": "0",
-            "old": "{\"v\":\"craig@example.com\"}",
-            "new": "{\"v\":\"craig\"}"
-        },
-        "('2', '0')": {
-            "row": "2",
-            "cell": "0",
-            "old": "{\"v\":\"mary@example.com\"}",
-            "new": "{\"v\":\"mary\"}"
-        },
-        "('3', '0')": {
-            "row": "3",
-            "cell": "0",
-            "old": "{\"v\":\"jamie@example.com\"}",
-            "new": "{\"v\":\"jamie\"}"
-        }
+{
+    "op": "MassCellChange",
+    "commonColumnName": "Login email",
+    "updateRowContextDependencies": "true",
+    "cellChangeCount": "4",
+    "(0, 0)": {
+        "row": "0",
+        "cell": "0",
+        "old": "{\"v\":\"laura@example.com\"}",
+        "new": "{\"v\":\"laura\"}"
+    },
+    "(1, 0)": {
+        "row": "1",
+        "cell": "0",
+        "old": "{\"v\":\"craig@example.com\"}",
+        "new": "{\"v\":\"craig\"}"
+    },
+    "(2, 0)": {
+        "row": "2",
+        "cell": "0",
+        "old": "{\"v\":\"mary@example.com\"}",
+        "new": "{\"v\":\"mary\"}"
+    },
+    "(3, 0)": {
+        "row": "3",
+        "cell": "0",
+        "old": "{\"v\":\"jamie@example.com\"}",
+        "new": "{\"v\":\"jamie\"}"
     }
-]
+}

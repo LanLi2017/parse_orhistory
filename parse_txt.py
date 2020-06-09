@@ -69,8 +69,8 @@ def Common_transform(topping:list,content:list):
     content_dict = dict()
     for value in TContent:
         res = dict(item.split("=") for item in value)
-        row_idx = res['row']
-        cell_idx = res['cell']
+        row_idx = int(res['row'])
+        cell_idx = int(res['cell'])
         idx = (row_idx, cell_idx)
         res_dict = {str(idx): res}
         content_dict.update(res_dict)
@@ -85,7 +85,7 @@ def col_addition(topping:list, content:list):
     op = {'op': opname}
     res = dict(item.split("=") for item in topping[1:])
     op.update(res)
-    cell = op['newCellIndex']
+    cell = int(op['newCellIndex'])
 
     # content
     Content = list_split_cond(content, '/ec/'.__eq__)
@@ -99,7 +99,7 @@ def col_addition(topping:list, content:list):
             # new_item = re.split(';|=', item)
             if re.match('\d+;.*', item):
                 new_item = item.split(';', maxsplit=1)
-                row_idx = new_item[0]
+                row_idx = int(new_item[0])
                 cell_value = new_item[1]
                 cell_idx = cell
                 idx = (row_idx, cell_idx)
@@ -107,6 +107,7 @@ def col_addition(topping:list, content:list):
                 content_dict.update(res_dict)
 
             elif re.match('\w+=.*', item):
+                # oldColumnGroupCount=0
                 new_item = item.split('=', maxsplit=1)
                 key, value = new_item[0], new_item[1]
                 content_dict.update({key: value})
@@ -139,7 +140,7 @@ def col_remove(topping:list, content:list):
             # new_item = re.split(';|=', item)
             if re.match('\d+;.*', item):
                 new_item = item.split(';', maxsplit=1)
-                row_idx = new_item[0]
+                row_idx = int(new_item[0])
                 cell_value = new_item[1]
                 # cell_idx = oldColumnIndex
                 cell_idx = cellIdx
@@ -195,7 +196,7 @@ def main():
     # common transformation : upper/lower/...
     prov_path = f'log/{args.log}'
     # prov_path = 'log/prov6.json'
-    op = [func_map[opname](top, content)]
+    op = func_map[opname](top, content)
     pprint(op)
     with open(prov_path, "w") as outfile:
         json.dump(op, outfile, indent=4)

@@ -1,32 +1,30 @@
-[
-    {
-        "op": "MassCellChange",
-        "commonColumnName": "First name",
-        "updateRowContextDependencies": "true",
-        "cellChangeCount": "4",
-        "('0', '2')": {
-            "row": "0",
-            "cell": "2",
-            "old": "{\"v\":\" Laura\"}",
-            "new": "{\"v\":\" LAURA\"}"
-        },
-        "('1', '2')": {
-            "row": "1",
-            "cell": "2",
-            "old": "{\"v\":\" Craig\"}",
-            "new": "{\"v\":\" CRAIG\"}"
-        },
-        "('2', '2')": {
-            "row": "2",
-            "cell": "2",
-            "old": "{\"v\":\" Mary\"}",
-            "new": "{\"v\":\" MARY\"}"
-        },
-        "('3', '2')": {
-            "row": "3",
-            "cell": "2",
-            "old": "{\"v\":\" Jamie\"}",
-            "new": "{\"v\":\" JAMIE\"}"
-        }
+{
+    "op": "MassCellChange",
+    "commonColumnName": "First name",
+    "updateRowContextDependencies": "true",
+    "cellChangeCount": "4",
+    "(0, 2)": {
+        "row": "0",
+        "cell": "2",
+        "old": "{\"v\":\" Laura\"}",
+        "new": "{\"v\":\" LAURA\"}"
+    },
+    "(1, 2)": {
+        "row": "1",
+        "cell": "2",
+        "old": "{\"v\":\" Craig\"}",
+        "new": "{\"v\":\" CRAIG\"}"
+    },
+    "(2, 2)": {
+        "row": "2",
+        "cell": "2",
+        "old": "{\"v\":\" Mary\"}",
+        "new": "{\"v\":\" MARY\"}"
+    },
+    "(3, 2)": {
+        "row": "3",
+        "cell": "2",
+        "old": "{\"v\":\" Jamie\"}",
+        "new": "{\"v\":\" JAMIE\"}"
     }
-]
+}
