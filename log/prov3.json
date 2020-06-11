@@ -4,9 +4,21 @@
     "columnIndex": "2",
     "newCellIndex": "4",
     "newCellCount": "4",
-    "(0, 4)": "{\"v\":\"user\"}",
-    "(1, 4)": "{\"v\":\"user\"}",
-    "(2, 4)": "{\"v\":\"admin\"}",
-    "(3, 4)": "{\"v\":\"admin\"}",
+    "(0, 4)": {
+        "old": null,
+        "new": "{\"v\":\"user\"}"
+    },
+    "(1, 4)": {
+        "old": null,
+        "new": "{\"v\":\"user\"}"
+    },
+    "(2, 4)": {
+        "old": null,
+        "new": "{\"v\":\"admin\"}"
+    },
+    "(3, 4)": {
+        "old": null,
+        "new": "{\"v\":\"admin\"}"
+    },
     "oldColumnGroupCount": "0"
 }

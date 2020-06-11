@@ -104,6 +104,10 @@ def col_addition(topping:list, content:list):
                 cell_idx = cell
                 idx = (row_idx, cell_idx)
                 res_dict = {str(idx): cell_value}
+                res_dict[str(idx)] = {
+                    'old': None,
+                    'new': res_dict[str(idx)],
+                }
                 content_dict.update(res_dict)
 
             elif re.match('\w+=.*', item):
@@ -146,6 +150,10 @@ def col_remove(topping:list, content:list):
                 cell_idx = cellIdx
                 idx = (row_idx, cell_idx)
                 res_dict = {str(idx): cell_value}
+                res_dict[str(idx)] = {
+                    'old': res_dict[str(idx)],
+                    'new': None,
+                }
                 content_dict.update(res_dict)
 
             elif re.match('\w+=.*', item):

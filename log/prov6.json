@@ -3,9 +3,21 @@
     "oldColumnIndex": "2",
     "oldColumn": "{\"cellIndex\":4,\"originalName\":\"group\",\"name\":\"group\",\"type\":\"\",\"format\":\"default\",\"title\":\"\",\"description\":\"\",\"constraints\":\"{}\"}",
     "oldCellCount": "4",
-    "(0, 4)": "{\"v\":\"user\"}",
-    "(1, 4)": "{\"v\":\"user\"}",
-    "(2, 4)": "{\"v\":\"admin\"}",
-    "(3, 4)": "{\"v\":\"admin\"}",
+    "(0, 4)": {
+        "old": "{\"v\":\"user\"}",
+        "new": null
+    },
+    "(1, 4)": {
+        "old": "{\"v\":\"user\"}",
+        "new": null
+    },
+    "(2, 4)": {
+        "old": "{\"v\":\"admin\"}",
+        "new": null
+    },
+    "(3, 4)": {
+        "old": "{\"v\":\"admin\"}",
+        "new": null
+    },
     "oldColumnGroupCount": "0"
 }
