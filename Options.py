@@ -13,7 +13,7 @@ def get_args():
     parser.add_argument(
         "--file_path",
         type=str,
-        choices=['1591062762131.change', '1591063332588.change', '1591063264316.change', '1591063379500.change', '1591063129144.change', '1591317229023.change'],
+        choices=['1591062762131.change', '1591063332588.change', '1591063264316.change', '1591063379500.change', '1591063129144.change', '1591317229023.change', '1591863373048.change', '1591863680781.change'],
         default='1591062762131.change',
         help='path of the input change'
     )

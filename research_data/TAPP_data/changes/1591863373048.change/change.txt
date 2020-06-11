@@ -1,0 +1,5 @@
+3.1
+com.google.refine.model.changes.ColumnRenameChange
+oldColumnName=try1
+newColumnName=newname
+/ec/

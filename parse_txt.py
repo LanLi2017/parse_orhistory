@@ -120,7 +120,7 @@ def col_addition(topping:list, content:list):
 
 
 def col_remove(topping:list, content:list):
-    ''' rename column topping: 3'''
+    ''' remove column topping: 3'''
     opname = topping[0].split('.')[-1]
     op = {'op': opname}
 
@@ -164,10 +164,50 @@ def col_remove(topping:list, content:list):
     return op
 
 
+def col_rename(topping:list, content:list):
+    ''' rename column topping: 1'''
+    opname = topping[0].split('.')[-1]
+    op = {'op': opname}
+
+    # deal with content
+    Content = list_split_cond(content, '/ec/'.__eq__)
+    # remove empty
+    TContent = [x for x in Content if x]
+
+    for value in TContent:
+        res = dict(item.split("=") for item in value)
+        op.update(res)
+    return op
+
+
+def single_edit(topping:list, content:list):
+    ''' single edit column topping: 1'''
+    opname = topping[0].split('.')[-1]
+    op = {'op': opname}
+
+    # deal with content
+    Content = list_split_cond(content, '/ec/'.__eq__)
+    # remove empty
+    TContent = [x for x in Content if x]
+
+    content_dict = dict()
+    for value in TContent:
+        res = dict(item.split("=") for item in value)
+        row_idx = int(res['row'])
+        cell_idx = int(res['cell'])
+        idx = (row_idx, cell_idx)
+        res_dict = {str(idx): res}
+        content_dict.update(res_dict)
+    op.update(content_dict)
+    return op
+
+
 func_map ={
     'MassCellChange': Common_transform,
     'ColumnAdditionChange': col_addition,
     'ColumnRemovalChange': col_remove,
+    'ColumnRenameChange': col_rename,
+    'CellChange': single_edit,
 
 }
 
@@ -192,12 +232,16 @@ def main():
     # mapping to different function
     opname = data[1].split('.')[-1]
 
-    if opname=='MassCellChange':
+    if opname == 'MassCellChange':
         top_count = 4
-    elif opname=='ColumnAdditionChange':
+    elif opname == 'ColumnAdditionChange':
         top_count = 5
-    elif opname=='ColumnRemovalChange':
+    elif opname == 'ColumnRemovalChange':
         top_count = 3
+    elif opname == 'CellChange':
+        top_count = 1
+    elif opname == 'ColumnRenameChange':
+        top_count = 1
 
     head, top, content = data[0], data[1:top_count + 1], data[top_count + 1:]
 

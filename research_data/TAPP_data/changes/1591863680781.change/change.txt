@@ -1,0 +1,7 @@
+3.1
+com.google.refine.model.changes.CellChange
+row=0
+cell=5
+old={"v":-36730}
+new={"v":"-3673"}
+/ec/
