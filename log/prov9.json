@@ -1,0 +1,104 @@
+{
+    "op": "ColumnSplitChange",
+    "columnNameCount": 2,
+    "NewColumnNames": [
+        "Login email 1",
+        "Login email 2"
+    ],
+    "rowIndexCount": 3,
+    "removeOriginalColumn": "true",
+    "column": "{\"cellIndex\":0,\"originalName\":\"Login email\",\"name\":\"Login email\",\"type\":\"string\",\"format\":\"\",\"title\":\"\",\"description\":\"\",\"constraints\":\"{}\"}",
+    "columnIndex": "0",
+    "firstNewCellIndex": "6",
+    "oldColumnGroupCount": "0",
+    "(0, 0)": {
+        "old": {
+            "v": "craig"
+        },
+        "new": {
+            "v": null
+        },
+        "row": 0,
+        "cell": 0
+    },
+    "(0, 6)": {
+        "old": {
+            "v": null
+        },
+        "new": {
+            "v": "craig"
+        },
+        "row": 0,
+        "cell": 6
+    },
+    "(0, 7)": {
+        "old": {
+            "v": null
+        },
+        "new": {
+            "v": null
+        },
+        "row": 0,
+        "cell": 7
+    },
+    "(1, 0)": {
+        "old": {
+            "v": "mary@example.com"
+        },
+        "new": {
+            "v": null
+        },
+        "row": 1,
+        "cell": 0
+    },
+    "(1, 6)": {
+        "old": {
+            "v": null
+        },
+        "new": {
+            "v": "mary"
+        },
+        "row": 1,
+        "cell": 6
+    },
+    "(1, 7)": {
+        "old": {
+            "v": null
+        },
+        "new": {
+            "v": "example.com"
+        },
+        "row": 1,
+        "cell": 7
+    },
+    "(2, 0)": {
+        "old": {
+            "v": "jamie@example.com"
+        },
+        "new": {
+            "v": null
+        },
+        "row": 2,
+        "cell": 0
+    },
+    "(2, 6)": {
+        "old": {
+            "v": null
+        },
+        "new": {
+            "v": "jamie"
+        },
+        "row": 2,
+        "cell": 6
+    },
+    "(2, 7)": {
+        "old": {
+            "v": null
+        },
+        "new": {
+            "v": "example.com"
+        },
+        "row": 2,
+        "cell": 7
+    }
+}

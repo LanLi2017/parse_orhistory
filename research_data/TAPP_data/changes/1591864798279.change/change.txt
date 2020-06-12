@@ -1,0 +1,33 @@
+3.1
+com.google.refine.model.changes.ColumnSplitChange
+columnName=Login email
+columnNameCount=2
+Login email 1
+Login email 2
+rowIndexCount=3
+0
+1
+2
+tupleCount=3
+1
+"craig"
+2
+"mary"
+"example.com"
+2
+"jamie"
+"example.com"
+removeOriginalColumn=true
+column={"cellIndex":0,"originalName":"Login email","name":"Login email","type":"string","format":"","title":"","description":"","constraints":"{}"}
+columnIndex=0
+firstNewCellIndex=6
+newRowCount=3
+{"flagged":false,"starred":false,"cells":[null,{"v":4081},{"v":" Craig"},{"v":" Johnson"},{"v":40811},{"v":"-3673"},{"v":"craig"}]}
+{"flagged":false,"starred":false,"cells":[null,{"v":9346},{"v":" Mary"},{"v":" Jenkins"},{"v":93461},{"v":-84115},{"v":"mary"},{"v":"example.com"}]}
+{"flagged":false,"starred":false,"cells":[null,{"v":5079},{"v":" Jamie"},{"v":" Smith"},{"v":50791},{"v":-45712},{"v":"jamie"},{"v":"example.com"}]}
+oldRowCount=3
+{"flagged":false,"starred":false,"cells":[{"v":"craig"},{"v":4081},{"v":" Craig"},{"v":" Johnson"},{"v":40811},{"v":"-3673"}]}
+{"flagged":false,"starred":false,"cells":[{"v":"mary@example.com"},{"v":9346},{"v":" Mary"},{"v":" Jenkins"},{"v":93461},{"v":-84115}]}
+{"flagged":false,"starred":false,"cells":[{"v":"jamie@example.com"},{"v":5079},{"v":" Jamie"},{"v":" Smith"},{"v":50791},{"v":-45712}]}
+oldColumnGroupCount=0
+/ec/
