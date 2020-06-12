@@ -397,6 +397,15 @@ func_map ={
     'ColumnSplitChange': col_split,
 }
 
+name_map ={
+    'MassCellChange': 4,
+    'ColumnAdditionChange': 5,
+    'ColumnRemovalChange': 3,
+    'ColumnRenameChange': 1,
+    'CellChange':1,
+    'ColumnSplitChange': 1,
+}
+
 
 def main():
 
@@ -420,18 +429,19 @@ def main():
     # mapping to different function
     opname = data[1].split('.')[-1]
 
-    if opname == 'MassCellChange':
-        top_count = 4
-    elif opname == 'ColumnAdditionChange':
-        top_count = 5
-    elif opname == 'ColumnRemovalChange':
-        top_count = 3
-    elif opname == 'CellChange':
-        top_count = 1
-    elif opname == 'ColumnRenameChange':
-        top_count = 1
-    elif opname == 'ColumnSplitChange':
-        top_count = 1
+    top_count = name_map[opname]
+    # if opname == 'MassCellChange':
+    #     top_count = 4
+    # elif opname == 'ColumnAdditionChange':
+    #     top_count = 5
+    # elif opname == 'ColumnRemovalChange':
+    #     top_count = 3
+    # elif opname == 'CellChange':
+    #     top_count = 1
+    # elif opname == 'ColumnRenameChange':
+    #     top_count = 1
+    # elif opname == 'ColumnSplitChange':
+    #     top_count = 1
 
     head, top, content = data[0], data[1:top_count + 1], data[top_count + 1:]
 
