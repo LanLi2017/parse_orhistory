@@ -1,0 +1,23 @@
+{
+    "op": "ColumnRemovalChange",
+    "oldColumnIndex": "2",
+    "oldColumn": "{\"cellIndex\":5,\"originalName\":\"Login email 2\",\"name\":\"Login email 2\",\"type\":\"\",\"format\":\"default\",\"title\":\"\",\"description\":\"\",\"constraints\":\"{}\"}",
+    "oldCellCount": "4",
+    "(0, 5)": {
+        "old": "{\"v\":\"example.com\"}",
+        "new": null
+    },
+    "(1, 5)": {
+        "old": "{\"v\":\"example.com\"}",
+        "new": null
+    },
+    "(2, 5)": {
+        "old": "{\"v\":\"example.com\"}",
+        "new": null
+    },
+    "(3, 5)": {
+        "old": "{\"v\":\"example.com\"}",
+        "new": null
+    },
+    "oldColumnGroupCount": "0"
+}

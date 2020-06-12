@@ -1,0 +1,11 @@
+3.1
+com.google.refine.model.changes.ColumnRemovalChange
+oldColumnIndex=2
+oldColumn={"cellIndex":5,"originalName":"Login email 2","name":"Login email 2","type":"","format":"default","title":"","description":"","constraints":"{}"}
+oldCellCount=4
+0;{"v":"example.com"}
+1;{"v":"example.com"}
+2;{"v":"example.com"}
+3;{"v":"example.com"}
+oldColumnGroupCount=0
+/ec/

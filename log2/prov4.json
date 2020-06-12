@@ -1,0 +1,24 @@
+{
+    "op": "ColumnAdditionChange",
+    "columnName": "Group",
+    "columnIndex": "3",
+    "newCellIndex": "5",
+    "newCellCount": "4",
+    "(0, 5)": {
+        "old": null,
+        "new": "{\"v\":\"user\"}"
+    },
+    "(1, 5)": {
+        "old": null,
+        "new": "{\"v\":\"user\"}"
+    },
+    "(2, 5)": {
+        "old": null,
+        "new": "{\"v\":\"admin\"}"
+    },
+    "(3, 5)": {
+        "old": null,
+        "new": "{\"v\":\"admin\"}"
+    },
+    "oldColumnGroupCount": "0"
+}

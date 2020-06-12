@@ -1,0 +1,78 @@
+{
+    "op": "ColumnSplitChange",
+    "columnNameCount": 2,
+    "NewColumnNames": [
+        "Login email 1",
+        "Login email 2"
+    ],
+    "rowIndexCount": 4,
+    "removeOriginalColumn": "false",
+    "column": "{\"cellIndex\":0,\"originalName\":\"Login email\",\"name\":\"Login email\",\"type\":\"string\",\"format\":\"\",\"title\":\"\",\"description\":\"\",\"constraints\":\"{}\"}",
+    "columnIndex": "0",
+    "firstNewCellIndex": "4",
+    "oldColumnGroupCount": "0",
+    "(0, 4)": {
+        "row": 0,
+        "cell": 4,
+        "old": null,
+        "new": {
+            "v": "laura"
+        }
+    },
+    "(0, 5)": {
+        "row": 0,
+        "cell": 5,
+        "old": null,
+        "new": {
+            "v": "example.com"
+        }
+    },
+    "(1, 4)": {
+        "row": 1,
+        "cell": 4,
+        "old": null,
+        "new": {
+            "v": "craig"
+        }
+    },
+    "(1, 5)": {
+        "row": 1,
+        "cell": 5,
+        "old": null,
+        "new": {
+            "v": "example.com"
+        }
+    },
+    "(2, 4)": {
+        "row": 2,
+        "cell": 4,
+        "old": null,
+        "new": {
+            "v": "mary"
+        }
+    },
+    "(2, 5)": {
+        "row": 2,
+        "cell": 5,
+        "old": null,
+        "new": {
+            "v": "example.com"
+        }
+    },
+    "(3, 4)": {
+        "row": 3,
+        "cell": 4,
+        "old": null,
+        "new": {
+            "v": "jamie"
+        }
+    },
+    "(3, 5)": {
+        "row": 3,
+        "cell": 5,
+        "old": null,
+        "new": {
+            "v": "example.com"
+        }
+    }
+}

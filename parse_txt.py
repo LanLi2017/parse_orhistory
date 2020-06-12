@@ -20,6 +20,7 @@ from pprint import pprint
 import Options
 import re
 import json
+import os
 
 
 def compare_list(old:list, new:list, row:int, op:dict):
@@ -30,16 +31,22 @@ def compare_list(old:list, new:list, row:int, op:dict):
     # x_y = tuple()
     # old_value = None
     # new_value = None
+    olddict = dict()
+    newdict = dict()
     for x in old:
         if x != new[y] or x==new[y]=={'v':None}:
             # col_idx_list.append(y)
             x_y = (row, y)
             old_value = old[y]
             new_value = new[y]
-            edits[str(x_y)]=  {'old': old_value,
-                                'new': new_value,
-                                'row': row,
-                                'cell': y}
+            #   "old": "{\"v\":\" 2070\"}",
+            olddict['old'] = old_value
+            newdict['new'] = new_value
+            edits[str(x_y)]=  {'row': row,
+                                'cell': y,
+                               }
+            edits[str(x_y)].update(olddict)
+            edits[str(x_y)].update(newdict)
             op.update(edits)
         y = y+1
 
@@ -344,13 +351,11 @@ def col_split(topping:list, content:list):
                 oldcells[cellindex] = {"v": None}
             for _ in range(columncount):
                 oldcells.append({"v": None})
-            oldres.append(oldcells)
+            oldres.append(pad_or_truncate(oldcells, target_len))
 
         # print([(x, y) for x, y in pairs if x != y])
         # for d1, d2 in zip(oldres, newres):
         #     print([(x,y) for x,y in ])
-
-
 
     elif removeOriginalColumn == 'false':
         # keep original
@@ -363,16 +368,16 @@ def col_split(topping:list, content:list):
             oldcells = oldvalues['cells']
             if not oldcells[cellindex]:
                 oldcells[cellindex] = {"v": None}
-            for _ in range(columncount):
-                oldcells.append({"v": None})
-            oldres.append(oldcells)
+            # for _ in range(columncount):
+            #     oldcells.append({"v": None})
+            oldres.append(pad_or_truncate(oldcells, target_len))
+            # oldres.append(oldcells)
 
     pairs = list(zip(oldres, newres))
     for row in range(rowIndexCount):
         pair = list(pairs[row])
         d1, d2 = pair
         compare_list(d1, d2, row, op)
-    pprint(op)
 
     # deal with json file
     '''
@@ -380,7 +385,6 @@ def col_split(topping:list, content:list):
     2. new column count : columnNameCount
     3. row index : rowIndexCount len(zip)
     '''
-    firstNewCellIndex = op['firstNewCellIndex']
     return op
 
 
@@ -398,7 +402,9 @@ def main():
 
     args = Options.get_args()
     #
-    filepath =f'research_data/TAPP_data/changes/{args.file_path}/change.txt'
+    # filepath =f'research_data/TAPP_data/changes/{args.file_path}/change.txt'
+    filepath = f'research_data/data2/history/{args.file_path}/change.txt'
+    # filepath = f'research_data/data2/history/1591944670566.change/change.txt'
     # filepath = 'research_data/TAPP_data/changes/1591864798279.change/change.txt'
     with open(filepath, 'r')as f:
         # txt = f.read()
@@ -430,7 +436,11 @@ def main():
     head, top, content = data[0], data[1:top_count + 1], data[top_count + 1:]
 
     # common transformation : upper/lower/...
-    prov_path = f'log/{args.log}'
+    log_folder = args.log
+    if not os.path.exists(log_folder):
+        os.makedirs(log_folder)
+
+    prov_path = f'{log_folder}/{args.out}'
     # prov_path = 'log/prov9.json'
     op = func_map[opname](top, content)
 

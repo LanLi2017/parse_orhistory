@@ -1,0 +1,40 @@
+3.1
+com.google.refine.model.changes.ColumnSplitChange
+columnName=Login email
+columnNameCount=2
+Login email 1
+Login email 2
+rowIndexCount=4
+0
+1
+2
+3
+tupleCount=4
+2
+"laura"
+"example.com"
+2
+"craig"
+"example.com"
+2
+"mary"
+"example.com"
+2
+"jamie"
+"example.com"
+removeOriginalColumn=false
+column={"cellIndex":0,"originalName":"Login email","name":"Login email","type":"string","format":"","title":"","description":"","constraints":"{}"}
+columnIndex=0
+firstNewCellIndex=4
+newRowCount=4
+{"flagged":false,"starred":false,"cells":[{"v":"laura@example.com"},{"v":" 2070"},{"v":" Laura"},{"v":" Grey"},{"v":"laura"},{"v":"example.com"}]}
+{"flagged":false,"starred":false,"cells":[{"v":"craig@example.com"},{"v":" 4081"},{"v":" Craig"},{"v":" Johnson"},{"v":"craig"},{"v":"example.com"}]}
+{"flagged":false,"starred":false,"cells":[{"v":"mary@example.com"},{"v":" 9346"},{"v":" Mary"},{"v":" Jenkins"},{"v":"mary"},{"v":"example.com"}]}
+{"flagged":false,"starred":false,"cells":[{"v":"jamie@example.com"},{"v":" 5079"},{"v":" Jamie"},{"v":" Smith"},{"v":"jamie"},{"v":"example.com"}]}
+oldRowCount=4
+{"flagged":false,"starred":false,"cells":[{"v":"laura@example.com"},{"v":" 2070"},{"v":" Laura"},{"v":" Grey"},null,null]}
+{"flagged":false,"starred":false,"cells":[{"v":"craig@example.com"},{"v":" 4081"},{"v":" Craig"},{"v":" Johnson"},null,null]}
+{"flagged":false,"starred":false,"cells":[{"v":"mary@example.com"},{"v":" 9346"},{"v":" Mary"},{"v":" Jenkins"},null,null]}
+{"flagged":false,"starred":false,"cells":[{"v":"jamie@example.com"},{"v":" 5079"},{"v":" Jamie"},{"v":" Smith"},null,null]}
+oldColumnGroupCount=0
+/ec/

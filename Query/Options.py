@@ -17,7 +17,12 @@ def get_args():
         help='Column Index'
     )
     parser.add_argument(
-        "--prov",
+        "--log",
+        type=str,
+        help='log folder name'
+    )
+    parser.add_argument(
+        "--out",
         type=str,
         help='Save file name'
     )

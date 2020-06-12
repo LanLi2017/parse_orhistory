@@ -1,6 +1,7 @@
-python answer.py --row 0 --col 0 --prov res0
-python answer.py --row 1 --col 1 --prov res1
-python answer.py --row 2 --col 4 --prov res2
+python answer.py --row 0 --col 1 --log log2 --out res0
+python answer.py --row 1 --col 6 --log log2 --out res1
+python answer.py --row 1 --col 3 --log log2 --out res2
+python answer.py --row 2 --col 5 --log log2 --out res3
 
 #sequence of number
 #index transformation first;
