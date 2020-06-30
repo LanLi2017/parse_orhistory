@@ -5,5 +5,7 @@
         "cell": "3",
         "old": "{\"v\":\" Johnson\"}",
         "new": "{\"v\":\"Johnson\"}"
-    }
+    },
+    "cellindex": 3,
+    "rowindex": 1
 }

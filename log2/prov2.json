@@ -2,6 +2,7 @@
     "op": "ColumnRemovalChange",
     "oldColumnIndex": "2",
     "oldColumn": "{\"cellIndex\":5,\"originalName\":\"Login email 2\",\"name\":\"Login email 2\",\"type\":\"\",\"format\":\"default\",\"title\":\"\",\"description\":\"\",\"constraints\":\"{}\"}",
+    "cellindex": 5,
     "oldCellCount": "4",
     "(0, 5)": {
         "old": "{\"v\":\"example.com\"}",

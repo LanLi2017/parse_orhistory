@@ -111,6 +111,7 @@ def Common_transform(topping:list,content:list):
         idx = (row_idx, cell_idx)
         res_dict = {str(idx): res}
         content_dict.update(res_dict)
+        content_dict.update({'cellindex': cell_idx})
     op.update(content_dict)
     return op
 
@@ -152,6 +153,7 @@ def col_addition(topping:list, content:list):
                 new_item = item.split('=', maxsplit=1)
                 key, value = new_item[0], new_item[1]
                 content_dict.update({key: value})
+    op.update({'cellindex': cell})
     op.update(content_dict)
     return op
 
@@ -197,6 +199,7 @@ def col_remove(topping:list, content:list):
                 new_item = item.split('=', maxsplit=1)
                 key, value = new_item[0], new_item[1]
                 content_dict.update({key: value})
+    op.update({'cellindex': cellIdx})
     op.update(content_dict)
     return op
 
@@ -235,6 +238,8 @@ def single_edit(topping:list, content:list):
         idx = (row_idx, cell_idx)
         res_dict = {str(idx): res}
         content_dict.update(res_dict)
+        content_dict.update({'cellindex': cell_idx})
+        content_dict.update({'rowindex': row_idx})
     op.update(content_dict)
     return op
 
@@ -328,17 +333,20 @@ def col_split(topping:list, content:list):
     firstNewCellIndex = int(op['firstNewCellIndex']) # 6
     columncount = op['columnNameCount'] #2
     target_len = firstNewCellIndex + columncount
+    cellindex_list = list(range(firstNewCellIndex,target_len,1))
 
     # original column being splited information
     oricolumn = json.loads(op['column'])
     # if the original column gets removed, change the null to "v": null
-    cellindex = oricolumn['cellIndex']
+    # if removed, also changed; else no change
+    cellindex = int(oricolumn['cellIndex'])
 
     newres = []
     oldres = []
     if removeOriginalColumn == 'true':
         # remove original
         # add null to new list, if the null in new list
+        cellindex_list.append(cellindex)
         for newvalues in newlist:
             newcells = pad_or_truncate(newvalues['cells'],target_len)
             if not newcells[cellindex]:
@@ -379,6 +387,7 @@ def col_split(topping:list, content:list):
         d1, d2 = pair
         compare_list(d1, d2, row, op)
 
+    op.update({'cellidx_list': cellindex_list})
     # deal with json file
     '''
     1. first new column index: firstNewCellIndex
@@ -408,7 +417,6 @@ name_map ={
 
 
 def main():
-
     args = Options.get_args()
     #
     # filepath =f'research_data/TAPP_data/changes/{args.file_path}/change.txt'

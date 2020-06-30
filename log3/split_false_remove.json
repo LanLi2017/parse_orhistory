@@ -11,10 +11,6 @@
     "columnIndex": "0",
     "firstNewCellIndex": "4",
     "oldColumnGroupCount": "0",
-    "cellidx_list": [
-        4,
-        5
-    ],
     "(0, 4)": {
         "row": 0,
         "cell": 4,
@@ -78,5 +74,9 @@
         "new": {
             "v": "example.com"
         }
-    }
+    },
+    "cellidx_list": [
+        4,
+        5
+    ]
 }

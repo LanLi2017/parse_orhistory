@@ -4,6 +4,7 @@
     "columnIndex": "3",
     "newCellIndex": "5",
     "newCellCount": "4",
+    "cellindex": 5,
     "(0, 5)": {
         "old": null,
         "new": "{\"v\":\"user\"}"

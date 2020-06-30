@@ -8,8 +8,10 @@
 #python parse_txt.py --file_path 1591863680781.change --log prov8.json
 #python parse_txt.py --file_path 1591864798279.change --log prov9.json
 
-python parse_txt.py --file_path 1591944670566.change --log log2 --out prov1.json
-python parse_txt.py --file_path 1591944941063.change --log log2 --out prov2.json
-python parse_txt.py --file_path 1591944606986.change --log log2 --out prov3.json
-python parse_txt.py --file_path 1591944518184.change --log log2 --out prov4.json
-python parse_txt.py --file_path 1591944632014.change --log log2 --out prov5.json
+#python parse_txt.py --file_path 1591944670566.change --log log2 --out prov1.json
+#python parse_txt.py --file_path 1591944941063.change --log log2 --out prov2.json
+#python parse_txt.py --file_path 1591944606986.change --log log2 --out prov3.json
+#python parse_txt.py --file_path 1591944518184.change --log log2 --out prov4.json
+#python parse_txt.py --file_path 1591944632014.change --log log2 --out prov5.json
+#python parse_txt.py --file_path 1591864798279.change --log log3 --out split_true_remove.json
+python parse_txt.py --file_path 1591944670566.change --log log3 --out split_false_remove.json
