@@ -88,6 +88,109 @@ def list_split_cond(items, sep_cond, maxsplit=-1):
     ]
 
 
+def padding_data(data, num_rows, num_cols):
+    ''' padding old lists, new lists -> make them into the same shape'''
+    row = len(data)
+    column = len(data[0])
+    pad_row = abs(num_rows-row)
+    pad_col = abs(num_cols-column)
+
+    for d in data:
+        # ['laura@example.com' ' 2070' ' Laura' ' Grey']
+        if pad_col != 0:
+           d.extend([{"v": None}]*pad_col)
+        elif pad_col == 0:
+            pass
+    if pad_row == 0:
+        pass
+    elif pad_row != 0:
+        for i in range(pad_row):
+            data.append([{"v": None}]*num_cols)
+    return data
+
+
+# def extract_value(v:dict):
+#     # extract value from transpose
+#     if v:
+#         return v['v']
+#     else:
+#         return None
+
+
+def transpose_cols_rows(topping:list, content:list):
+    ''' transpose : topping: 1'''
+    opname = topping[0].split('.')[-1]
+    op = {'op': opname}
+
+    idx = 0
+    new_col_count = 0
+    old_col_count = 0
+    new_row_count = 0
+    old_row_count = 0
+
+    # last half for new dataset, old dataset
+    new_cells = []
+    old_cells = []
+    while idx < len(content):
+        line = content[idx]
+        if re.match(r'^newColumnCount=\d+',line):
+            new_col_count = int(line.rsplit('=', 1)[1])
+            new_col= content[idx+1:idx+1+new_col_count]
+            op.update({'newColumnCount': new_col_count})
+            # possible breakout:
+            op.update({'newColumnModel': new_col})
+            idx += new_col_count
+        elif re.match(r'^oldColumnCount=\d+$', line):
+            old_col_count = int(line.rsplit('=', 1)[1])
+            op.update({'oldColumnCount': old_col_count})
+            old_col = content[idx+1: idx+1+old_col_count]
+            op.update({'oldColumnModel': old_col})
+            idx += old_col_count
+        elif re.match(r'^newRowCount=\d+$', line):  # tuplecount idx = 0
+            new_row_count = int(line.rsplit('=', 1)[1])
+            op.update({'newRowCount': new_row_count})
+            new_data = content[idx + 1: idx + 1 + new_row_count]
+            for value in new_data:
+                # v_cells = []
+                cells = json.loads(value)['cells']
+                if len(cells) < new_col_count:
+                    cells.extend([None] * (new_col_count - len(cells)))
+                # for v in cells:
+                #     v_cells.append(extract_value(v))
+
+                new_cells.append(cells)
+            idx += new_row_count
+
+        elif re.match(r'^oldRowCount=\d+$', line):
+            # need to remove the padding
+            old_row_count = int(line.rsplit('=', 1)[1])
+            op.update({'newRowCount': old_row_count})
+            old_data = content[idx + 1: idx + 1 + old_row_count]
+            for value in old_data:
+                cells = json.loads(value)['cells'][:old_col_count]
+                # v_cells = []
+                # for v in cells:
+                #     v_cells.append(extract_value(v))
+
+                old_cells.append(cells)
+            idx += old_row_count
+
+        idx += 1
+
+    # paddding old and new both
+    num_rows = max(new_row_count, old_row_count)
+    num_cols = max(new_col_count, old_col_count)
+    # padding shape: num_rows * num_cols
+    pad_new = padding_data(new_cells, num_rows, num_cols)
+    pad_old = padding_data(old_cells, num_rows, num_cols)
+    pairs = list(zip(pad_old, pad_new))
+    for row in range(num_rows):
+        pair = list(pairs[row])
+        d1, d2 = pair
+        compare_list(d1, d2, row, op)
+    return op
+
+
 def Common_transform(topping:list,content:list):
     ''' common transformation: topping: 4'''
     # content: list
@@ -277,7 +380,6 @@ def col_split(topping:list, content:list):
     # [st_idx , end_idx] : middle sub text
     st_idx = mid_idx
     ed_idx = 0
-    old_new = []
     newlist = []
     oldlist = []
     while mid_idx < len(content):
@@ -313,7 +415,6 @@ def col_split(topping:list, content:list):
                 oldlist.append(jsonout)
 
             # old_new = zip(oldlist, newlist)
-
 
             mid_idx += newRowCount+newRowCount+1
 
@@ -397,6 +498,39 @@ def col_split(topping:list, content:list):
     return op
 
 
+def row_reorder(topping, content):
+    opname = topping[0].split('.')[-1]
+    op = {'op': opname}
+    idx = 0
+    while idx < len(content):
+        line = content[idx]
+        if re.match(r'^rowIndexCount=\d+', line):
+            rowIndexCount = int(line.rsplit('=', 1)[1])
+            op.update({'rowIndexCount': rowIndexCount})
+            row_idx = content[idx+1: idx+1+rowIndexCount]
+            op.update({'row-index': row_idx})
+            idx+=rowIndexCount
+        idx+=1
+
+    return op
+
+
+def row_flag():
+    return 0
+
+
+def row_star():
+    return 0
+
+
+def column_move():
+    pass
+
+
+def reconciliation():
+    pass
+
+
 func_map ={
     'MassCellChange': Common_transform,
     'ColumnAdditionChange': col_addition,
@@ -404,6 +538,13 @@ func_map ={
     'ColumnRenameChange': col_rename,
     'CellChange': single_edit,
     'ColumnSplitChange': col_split,
+    'MassRowColumnChange': transpose_cols_rows,
+    'RowReorderChange': row_reorder,
+    'RowFlagChange': row_flag,
+    'RowStarChange': row_star,
+    'ColumnMoveChange': column_move,
+    'ReconChange': reconciliation,
+
 }
 
 name_map ={
@@ -413,16 +554,24 @@ name_map ={
     'ColumnRenameChange': 1,
     'CellChange':1,
     'ColumnSplitChange': 1,
+    'MassRowColumnChange': 1,
+    'RowReorderChange': 1,
 }
+# mass row column change : transpose
+# row reorder
+# row removal
+# row flag
+# row star
+# column reorder
 
 
 def main():
     args = Options.get_args()
     #
-    # filepath =f'research_data/TAPP_data/changes/{args.file_path}/change.txt'
+    # filepath =f'research_data/TAPP_data/changes/{args.file_path}/transpose_chan.txt'
     filepath = f'research_data/data2/history/{args.file_path}/change.txt'
-    # filepath = f'research_data/data2/history/1591944670566.change/change.txt'
-    # filepath = 'research_data/TAPP_data/changes/1591864798279.change/change.txt'
+    # filepath = f'research_data/data2/history/1591944670566.change/transpose_chan.txt'
+    # filepath = 'research_data/TAPP_data/changes/1591864798279.change/transpose_chan.txt'
     with open(filepath, 'r')as f:
         # txt = f.read()
           data = f.readlines()
