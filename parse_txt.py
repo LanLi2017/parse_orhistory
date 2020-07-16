@@ -515,16 +515,29 @@ def row_reorder(topping, content):
     return op
 
 
-def row_flag():
-    return 0
+def row_flag(top, content):
+    opname = top[0].split('.')[-1]
+    op = {'op': opname}
+    res = dict(item.split("=") for item in top[1:])
+    op.update(res)
+    return op
 
 
-def row_star():
-    return 0
+def row_star(top, content):
+    opname = top[0].split('.')[-1]
+    op = {'op': opname}
+    res = dict(item.split("=") for item in top[1:])
+    op.update(res)
+    return op
 
 
-def column_move():
-    pass
+def column_move(top, content):
+    ''' move column '''
+    opname = top[0].split('.')[-1]
+    op = {'op': opname}
+    res = dict(item.split("=") for item in top[1:])
+    op.update(res)
+    return op
 
 
 def reconciliation():
@@ -556,6 +569,9 @@ name_map ={
     'ColumnSplitChange': 1,
     'MassRowColumnChange': 1,
     'RowReorderChange': 1,
+    'RowFlagChange': 4,
+    'RowStarChange': 4,
+    'ColumnMoveChange': 5,
 }
 # mass row column change : transpose
 # row reorder

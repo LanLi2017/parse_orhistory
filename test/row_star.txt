@@ -1,0 +1,6 @@
+3.4-beta2
+com.google.refine.model.changes.RowStarChange
+row=8
+newStarred=true
+oldStarred=false
+/ec/
