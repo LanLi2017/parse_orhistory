@@ -50,6 +50,15 @@ def padding_data(data, num_rows, num_cols):
     return data
 
 
+def count_change_cells(op):
+    # return the total number of changes for each operation
+    count = 0
+    for key, value in op.items():
+        z = re.match(r'^\((\d+), (\d+)\)$', key)
+        if z:
+            count +=1
+    return count
+
 # def extract_value(v:dict):
 #     if v:
 #         return v['v']
@@ -135,7 +144,7 @@ def transpose_cols_rows(topping:list, content:list):
 
 
 def main():
-    filepath = f'change.txt'
+    filepath = f'trans_change.txt'
     # filepath = f'research_data/data2/history/1591944670566.change/transpose_chan.txt'
     # filepath = 'research_data/TAPP_data/changes/1591864798279.change/transpose_chan.txt'
     with open(filepath, 'r')as f:
@@ -151,6 +160,11 @@ def main():
     head, top, content = data[0], data[1:top_count + 1], data[top_count + 1:]
     op = transpose_cols_rows(top, content)
     pprint(op)
+    count_changes = 0
+    if op['op'] == 'MassRowColumnChange':
+        # transpose
+        count_changes = count_change_cells(op)
+    print(count_changes)
 
 
 if __name__ == '__main__':

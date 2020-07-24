@@ -313,7 +313,7 @@ def col_rename(topping:list, content:list):
     op = {'op': opname}
 
     # deal with content
-    Content = list_split_cond(content, '/ec/'.__eq__)
+    Content = list_split_cond(content, '/ec/'.__eq__)\
     # remove empty
     TContent = [x for x in Content if x]
 
@@ -447,6 +447,7 @@ def col_split(topping:list, content:list):
     if removeOriginalColumn == 'true':
         # remove original
         # add null to new list, if the null in new list
+        # end [-1] is the removal column
         cellindex_list.append(cellindex)
         for newvalues in newlist:
             newcells = pad_or_truncate(newvalues['cells'],target_len)
