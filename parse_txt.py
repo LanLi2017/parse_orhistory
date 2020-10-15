@@ -582,12 +582,32 @@ name_map ={
 # column reorder
 
 
+def add_signature(datas):
+    ''' row: i, column: j  apply unique signature for each cell
+        s = 2^i * 3^j
+        the history of signature should be history/life of this cell
+    '''
+    sig = dict()
+    for key, value in datas.items():
+        z = re.match(r'^\((\d+), (\d+)\)$', key)
+        if z:
+            row = int(z.group(1))
+            column = int(z.group(2))
+            # calculate unique signature
+            s = pow(2, row) * pow(3, column)
+            sig['signature'] = s
+
+    datas.update(sig)
+
+    return datas
+
+
 def main():
     args = Options.get_args()
     #
     # filepath =f'research_data/TAPP_data/changes/{args.file_path}/transpose_chan.txt'
     filepath = f'research_data/data2/history/{args.file_path}/change.txt'
-    # filepath = f'research_data/data2/history/1591944670566.change/transpose_chan.txt'
+    # filepath = f'research_data/data2/history/1591944632014.change/change.txt'
     # filepath = 'research_data/TAPP_data/changes/1591864798279.change/transpose_chan.txt'
     with open(filepath, 'r')as f:
         # txt = f.read()
@@ -625,8 +645,10 @@ def main():
         os.makedirs(log_folder)
 
     prov_path = f'{log_folder}/{args.out}'
-    # prov_path = 'log/prov9.json'
+    # prov_path = 'log/prov9_fix.json'
     op = func_map[opname](top, content)
+
+    op = add_signature(op)
 
     with open(prov_path, "w") as outfile:
         json.dump(op, outfile, indent=4)
