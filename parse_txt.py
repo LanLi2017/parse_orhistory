@@ -582,26 +582,6 @@ name_map ={
 # column reorder
 
 
-def add_signature(datas):
-    ''' row: i, column: j  apply unique signature for each cell
-        s = 2^i * 3^j
-        the history of signature should be history/life of this cell
-    '''
-    sig = dict()
-    for key, value in datas.items():
-        z = re.match(r'^\((\d+), (\d+)\)$', key)
-        if z:
-            row = int(z.group(1))
-            column = int(z.group(2))
-            # calculate unique signature
-            s = pow(2, row) * pow(3, column)
-            sig['signature'] = s
-
-    datas.update(sig)
-
-    return datas
-
-
 def main():
     args = Options.get_args()
     #
