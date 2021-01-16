@@ -34,7 +34,7 @@ def compare_list(old:list, new:list, row:int, op:dict):
     olddict = dict()
     newdict = dict()
     for x in old:
-        if x != new[y] or x==new[y]=={'v':None}:
+        if x != new[y] or x==new[y]==None:
             # col_idx_list.append(y)
             x_y = (row, y)
             old_value = old[y]
@@ -55,7 +55,7 @@ def compare_list(old:list, new:list, row:int, op:dict):
 
 def pad_or_truncate(old:list, target_len:int):
     # adding more null
-    new = old[:target_len] +[{"v": None}]*(target_len - len(old))
+    new = old[:target_len] +[None]*(target_len - len(old))
     return new
 
 
@@ -98,14 +98,14 @@ def padding_data(data, num_rows, num_cols):
     for d in data:
         # ['laura@example.com' ' 2070' ' Laura' ' Grey']
         if pad_col != 0:
-           d.extend([{"v": None}]*pad_col)
+           d.extend([None]*pad_col)
         elif pad_col == 0:
             pass
     if pad_row == 0:
         pass
     elif pad_row != 0:
         for i in range(pad_row):
-            data.append([{"v": None}]*num_cols)
+            data.append([None]*num_cols)
     return data
 
 
@@ -452,15 +452,15 @@ def col_split(topping:list, content:list):
         for newvalues in newlist:
             newcells = pad_or_truncate(newvalues['cells'],target_len)
             if not newcells[cellindex]:
-                newcells[cellindex] = {"v": None}
+                newcells[cellindex] = None
             newres.append(pad_or_truncate(newcells, target_len))
 
         for oldvalues in oldlist:
             oldcells = oldvalues['cells']
             if not oldcells[cellindex]:
-                oldcells[cellindex] = {"v": None}
+                oldcells[cellindex] = None
             for _ in range(columncount):
-                oldcells.append({"v": None})
+                oldcells.append(None)
             oldres.append(pad_or_truncate(oldcells, target_len))
 
         # print([(x, y) for x, y in pairs if x != y])
@@ -472,12 +472,12 @@ def col_split(topping:list, content:list):
         for newvalues in newlist:
             newcells = newvalues['cells']
             if not newcells[cellindex]:
-                newcells[cellindex] = {"v": None}
+                newcells[cellindex] = None
             newres.append(pad_or_truncate(newcells, target_len))
         for oldvalues in oldlist:
             oldcells = oldvalues['cells']
             if not oldcells[cellindex]:
-                oldcells[cellindex] = {"v": None}
+                oldcells[cellindex] = None
             # for _ in range(columncount):
             #     oldcells.append({"v": None})
             oldres.append(pad_or_truncate(oldcells, target_len))
@@ -586,7 +586,8 @@ def main():
     args = Options.get_args()
     #
     # filepath =f'research_data/TAPP_data/changes/{args.file_path}/transpose_chan.txt'
-    filepath = f'research_data/data2/history/{args.file_path}/change.txt'
+    # filepath = f'research_data/data2/history/{args.file_path}/change.txt'
+    filepath = f'research_data/data2/history/1591944670566.change/change.txt'
     # filepath = f'research_data/data2/history/1591944632014.change/change.txt'
     # filepath = 'research_data/TAPP_data/changes/1591864798279.change/transpose_chan.txt'
     with open(filepath, 'r')as f:
@@ -598,7 +599,7 @@ def main():
     # different text file has different number of topping
 
     # top_count = args.num_top ; initialize
-    top_count = 3
+    top_count = 1
 
     # mapping to different function
     opname = data[1].split('.')[-1]
@@ -620,15 +621,16 @@ def main():
     head, top, content = data[0], data[1:top_count + 1], data[top_count + 1:]
 
     # common transformation : upper/lower/...
-    log_folder = args.log
+    # log_folder = args.log
+    log_folder = 'log3/'
     if not os.path.exists(log_folder):
         os.makedirs(log_folder)
 
-    prov_path = f'{log_folder}/{args.out}'
-    # prov_path = 'log/prov9_fix.json'
+    # prov_path = f'{log_folder}/{args.out}'
+    prov_path = 'log3/split_true_remove.json'
     op = func_map[opname](top, content)
 
-    op = add_signature(op)
+    # op = add_signature(op)
 
     with open(prov_path, "w") as outfile:
         json.dump(op, outfile, indent=4)
